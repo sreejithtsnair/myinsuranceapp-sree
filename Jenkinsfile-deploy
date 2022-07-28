@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'develop',url: 'https://github.com/sreejithtsnair/myinsuranceapp-sree.git'
+                git branch: 'deploy',url: 'https://github.com/sreejithtsnair/myinsuranceapp-sree.git'
 	        }
         }        
         stage('Requirements') {
@@ -47,16 +47,11 @@ pipeline {
             }
         }
         stage('Apply Kubernetes ') {
-
-
             steps {
-
                 echo 'Apply Kubernetes..'
                 withKubeConfig([credentialsId: 'k8-credentials',serverUrl:'https://civil-snail-k8s-ad0f7e38.hcp.eastasia.azmk8s.io']) {
                 sh 'kubectl apply -f kubernetes/myinsuranceappsree-azure-deployment.yaml'
-
                 sh 'kubectl apply -f kubernetes/myinsuranceappsree-azure-services.yaml'
-
                 sh 'kubectl port-forward service/myinsuranceappsree-service 5050:5000 &'
                 sleep 5 //time to complete port forwarding
                 }
