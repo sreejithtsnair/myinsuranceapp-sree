@@ -52,20 +52,15 @@ pipeline {
             steps {
 
                 echo 'Apply Kubernetes..'
-
-                //withKubeConfig([credentialsId: 'k8-credentials',serverUrl:'https://rapid-emu-k8s-c9873dc9.hcp.eastasia.azmk8s.io']) {
-
-                withKubeConfig([credentialsId: 'k8-credentials']) {
-
+                withKubeConfig([credentialsId: 'k8-credentials',serverUrl:'https://civil-snail-k8s-ad0f7e38.hcp.eastasia.azmk8s.io']) {
                 sh 'kubectl apply -f kube/myinsuranceappsree-azure-deployment.yaml'
 
                 sh 'kubectl apply -f kube/myinsuranceappsree-azure-services.yaml'
 
                 sh 'kubectl port-forward service/myinsuranceappsree-service 5050:5000 &'
-
-                sleep 5 // give 5 secs to stablish the port forward
-
+                sleep 5 //time to complete port forwarding
                 }
+            }
         }
     }
         //stage('External acceptance tests') {
