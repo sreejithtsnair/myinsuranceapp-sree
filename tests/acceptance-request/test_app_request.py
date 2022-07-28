@@ -1,7 +1,7 @@
 import json
 import unittest
-import requests
-from project import app
+import request
+from project import *
 
 class TestApp(unittest.TestCase):
     token=''
@@ -17,7 +17,7 @@ class TestApp(unittest.TestCase):
         if response.status_code==200:
             TestApp.token=data['token']
         
-    def test_2_get_restricted(self):
+      def test_2_get_restricted(self):
         tester = app.test_client(self)
         print(f"token: {self.token}")
         headers = {"Authorization": f"Bearer {TestApp.token}"}
