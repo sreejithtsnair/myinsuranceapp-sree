@@ -50,8 +50,8 @@ pipeline {
             steps {
                 echo 'Apply Kubernetes..'
                 withKubeConfig([credentialsId: 'k8-credentials']) {
-                sh 'kubectl apply -f kubernetes/myinsuranceappsree-azure-deployment.yaml'
-                sh 'kubectl apply -f kubernetes/myinsuranceappsree-azure-services.yaml'
+                sh 'kubectl apply -f kube/myinsuranceappsree-azure-deployment.yaml'
+                sh 'kubectl apply -f kube/myinsuranceappsree-azure-services.yaml'
                 sh 'kubectl port-forward service/myinsuranceappsree-service 5050:5000 &'
                 sleep 5 //time to complete port forwarding
                 }
