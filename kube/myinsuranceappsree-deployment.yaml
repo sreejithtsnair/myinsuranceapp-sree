@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myinsuranceapp
+  labels:
+    app: myinsuranceapp
+spec:
+  replicas: 8
+  selector:
+    matchLabels:
+      app: myinsuranceapp
+  template:
+    metadata:
+      labels:
+        app: myinsuranceapp
+    spec:
+      containers:
+      - name: myinsuranceapp
+        image: sreejithtsnair/myinsuranceappsree:v8
+        ports:
+        - name: http
+          containerPort: 5000
