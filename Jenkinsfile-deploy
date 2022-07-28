@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'develop',url: 'https://github.com/sreejithtsnair/myinsuranceapp-sree.git'
+                git branch: 'deploy',url: 'https://github.com/sreejithtsnair/myinsuranceapp-sree.git'
 	        }
         }        
         stage('Requirements') {
@@ -57,19 +57,27 @@ pipeline {
                 }
             }
         }
-     }
-        post {
-            always {
-            echo 'post do this always..'
+     
+        stage('External acceptance tests') {
+            steps{
+                echo 'External acceptance tests...'
+                sh 'python3 -m unittest discover -s tests/acceptance-request -v'
             }
-            success{
+        }
+    }
+    post {
+        always {
+            echo 'post do this always...'
+        }
+        success{
             echo 'post do this when success...'
-            }
-            failure {
+        }
+        failure {
             echo 'post do this when failure...'
-            }
-            cleanup{
+        }
+        cleanup{
             echo 'post do this when cleanup...'
+            sh 'pkill -f "port-forward"'
             deleteDir()
         }
     }
