@@ -6,7 +6,7 @@ class TestApp(unittest.TestCase):
 
     token=''
        
-    def test_1_get_valid_token(self):
+    def test_1_get_user_products_valid_token(self):
         tester = app.test_client(self)
         print(f"token: {self.token}")
         headers = {"Authorization": f"Bearer {TestApp.token}"}
