@@ -9,4 +9,7 @@ class TestApp(unittest.TestCase):
     def test_1_get_Token(self):
         url=f"{self.base_url}/token"
         self.assertTrue(True)
-        
+
+    def test_2_get_product (self):
+        url=f"{self.base_url}/products/2"
+        self.assertTrue(True)
