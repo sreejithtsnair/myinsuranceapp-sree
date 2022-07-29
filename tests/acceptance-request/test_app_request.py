@@ -9,16 +9,4 @@ class TestApp(unittest.TestCase):
     def test_1_get_Token(self):
         url=f"{self.base_url}/token"
         self.assertTrue(True)
-
-    def test_2_get_user_products_valid_token(self):
-        url=f"{self.base_url}/users/2/products"
-        self.assertTrue(True)
-
-    def test_3_get_user_products_invalid_token(self):
-        url=f"{self.base_url}/users/1/products"
-        invalid_fake_token='CfDJ8OW5OI0CPGJBgSNlGwO0x4YF7qbYKVv7KOO-N0eFtDUzXOrL7F9Xd9W1otVi4ueJOkAmAhuoHFWNkqRaFD7zvAMHMSKncl6Vo5QXKmpvy6vqxOKxSURdIey8aZPRi3Nnhp2p9la-Al5xrVKz0lignRdcCHf3O7pF9zv_sNx_c_T7pUe3WsxaJEPX3t_9FO2Wjw'
-        headers = {"Authorization": f"Bearer {invalid_fake_token}"}
-        response = requests.get(url, headers=headers)
-        data=json.loads(response.text)
-        print(f"get_user_products: {data}")
-        self.assertTrue(response.status_code > 400)
+        
