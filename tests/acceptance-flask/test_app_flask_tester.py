@@ -36,12 +36,6 @@ class TestApp(unittest.TestCase):
         print(f"get_user_products: {data}")
         self.assertTrue(response.status_code > 400)
 
-    def test_4_invalid_user(self):
-        tester = app.test_client(self)
-        print(f"token: {self.token}")
-        headers = {"Authorization": f"Bearer {TestApp.token}"}
-        response = tester.get('/api/v1/users/89/products', content_type='application/json', headers=headers)
-        data=json.loads(response.text)
-        self.assertEqual(response.status_code, 200)
+
 
       
