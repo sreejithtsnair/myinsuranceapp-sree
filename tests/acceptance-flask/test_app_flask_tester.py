@@ -1,4 +1,6 @@
 import json
+from tkinter import TRUE
+from tokenize import Token
 import unittest
 import requests
 
@@ -8,8 +10,9 @@ class TestApp(unittest.TestCase):
     token=''
     base_url='http://localhost:5000/api/v1'
 
-    def test_1_get_token(self):
-        tester = api_get_user.test_client(self)
-        test_data = {"email":"jd@myinsuranceapp.com","password":"passwordjd"}
-        self.assertTrue(True)
+    def test_5_get_restricted(self):
+        tester = Token.test_client(self)
+        print(f"token: {self.token}")
+        headers = {"Authorization": f"Bearer {TestApp.token}"}
+        self.assertTrue(TRUE)
        
