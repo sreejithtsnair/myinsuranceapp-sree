@@ -77,7 +77,7 @@ pipeline {
         }
         cleanup{
             echo 'post do this when cleanup...'
-            sh 'pkill -f "port-forward"'
+            //sh 'pkill -f "port-forward"'
             deleteDir()
         }
     }
