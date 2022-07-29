@@ -1,27 +1,11 @@
 import json
 import unittest
-from project.controllers.api.user_controller import api_get_user_products, api_get_users, api_update_user
-
+import requests
 
 class TestApp(unittest.TestCase):
     token=''
+    base_url='http://localhost:5000/api/v1'
 
-    def test_1_get_none(self):
-        tester = api_get_users.test_client(self)
+    def test_1_getToken(self):
         self.assertTrue(True)
-
-    def test_2_post(self):
-        tester = api_update_user.test_client(self)
-        test_data = {"country": "India",
-                     "email": "sree@s.com",
-                     "fullname": "sree"}
-        response = tester.post('/api/v1/users/1',content_type='application/json', json=test_data)
-        self.assertEqual(response.status_code, 200)
-        
-    def test_3_get_none(self):
-        tester = api_get_user_products.test_client(self)
-        response = tester.get('/api/v1/users/2/products', 
-        content_type='application/json')
-        data=json.loads(response.text)
-        self.assertEqual(response.status_code, 200)
        
